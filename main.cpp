@@ -45,7 +45,7 @@ void made_vec_5persent(std::vector<T>& v) {
 
 
 template<typename T>
-void test_sort_time(size_t d) {
+void test_sort_time(size_t gap) {
 	std::vector<T> v(5000000);
 	std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
 
@@ -53,27 +53,27 @@ void test_sort_time(size_t d) {
 	made_vec_unsort(v);
 	start = std::chrono::high_resolution_clock::now();
 	//сортировка вектора
-	shell_sort(v, d);
+	shell_sort(v, gap);
 	end = std::chrono::high_resolution_clock::now();
-	std::cout << "Sort unsorted vec, d = " << d << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
+	std::cout << "Sort unsorted vec, gap = " << gap << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
 		(end - start).count() << " ms;" << std::endl;
 
 	//10 процентов данных не отсортированы
 	made_vec_10persent(v);
 	start = std::chrono::high_resolution_clock::now();
 	//сортировка вектора
-	shell_sort(v, d);
+	shell_sort(v, gap);
 	end = std::chrono::high_resolution_clock::now();
-	std::cout << "Sort 10 persent unsorted vec, d = " << d << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
+	std::cout << "Sort 10 persent unsorted vec, gap = " << gap << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
 		(end - start).count() << " ms;" << std::endl;
 
 	//5 процентов данных не отсортированы
 	made_vec_5persent(v);
 	start = std::chrono::high_resolution_clock::now();
 	//сортировка вектора
-	shell_sort(v, d);
+	shell_sort(v, gap);
 	end = std::chrono::high_resolution_clock::now();
-	std::cout << "Sort 5 persent unsorted vec, d = " << d << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
+	std::cout << "Sort 5 persent unsorted vec, gap = " << gap << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
 		(end - start).count() << " ms;" << std::endl;
 }
 
@@ -84,13 +84,20 @@ int main() {
 
 	//тест d=2
 	test_sort_time<int>(2);
-
+	// unsorted_vec   =  34264 mc
+	
+	
 	//тест d=3
 	test_sort_time<int>(3);
 	
 	//тест d=4
 	test_sort_time<int>(4);
-
-
+	
+	
+	//		d(gap) =      2	           3           4
+	// unsorted_vec   	=  34264ms 	30380ms	    33521ms
+	// unsort_10_persent	=  22380ms 	21594ms	    19301ms	
+	// unsort_5_persent	=  18862ms	19713ms     18686ms
+	
 	return 0;
 }
