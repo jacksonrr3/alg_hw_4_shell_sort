@@ -45,7 +45,7 @@ void made_vec_5persent(std::vector<T>& v) {
 
 
 template<typename T>
-void test_sort_time(size_t gap) {
+void test_sort_time(size_t g) {
 	std::vector<T> v(5000000);
 	std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
 
@@ -53,27 +53,27 @@ void test_sort_time(size_t gap) {
 	made_vec_unsort(v);
 	start = std::chrono::high_resolution_clock::now();
 	//сортировка вектора
-	shell_sort(v, gap);
+	shell_sort(v, g);
 	end = std::chrono::high_resolution_clock::now();
-	std::cout << "Sort unsorted vec, gap = " << gap << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
+	std::cout << "Sort unsorted vec, gap = " << g << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
 		(end - start).count() << " ms;" << std::endl;
 
 	//10 процентов данных не отсортированы
 	made_vec_10persent(v);
 	start = std::chrono::high_resolution_clock::now();
 	//сортировка вектора
-	shell_sort(v, gap);
+	shell_sort(v, g);
 	end = std::chrono::high_resolution_clock::now();
-	std::cout << "Sort 10 persent unsorted vec, gap = " << gap << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
+	std::cout << "Sort 10 persent unsorted vec, gap = " << g << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
 		(end - start).count() << " ms;" << std::endl;
 
 	//5 процентов данных не отсортированы
 	made_vec_5persent(v);
 	start = std::chrono::high_resolution_clock::now();
 	//сортировка вектора
-	shell_sort(v, gap);
+	shell_sort(v, g);
 	end = std::chrono::high_resolution_clock::now();
-	std::cout << "Sort 5 persent unsorted vec, gap = " << gap << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
+	std::cout << "Sort 5 persent unsorted vec, gap = " << g << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
 		(end - start).count() << " ms;" << std::endl;
 }
 
