@@ -99,7 +99,7 @@ int main() {
 	//тест d=6
 	test_sort_time<int>(6);
 
-	//тест d=6
+	//тест d=7
 	test_sort_time<int>(7);
 
 	//		d(gap) =      2	           3           4
