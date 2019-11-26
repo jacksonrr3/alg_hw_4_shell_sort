@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <string>
 
+//алгоритм сортировки shell sort
 template <typename T>
 void shell_sort(std::vector<T>& v, size_t n) {
 	for (int gap = v.size() / n; gap > 0; gap /= n) {
@@ -67,13 +68,13 @@ void test_sort_time(size_t g) {
 	std::cout << "Sort 10 persent unsorted vec, gap = " << g << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
 		(end - start).count() << " ms;" << std::endl;
 
-	//5 процентов данных не отсортированы
+	//5 элементов не отсортированы
 	made_vec_5(v);
 	start = std::chrono::high_resolution_clock::now();
 	//сортировка вектора
 	shell_sort(v, g);
 	end = std::chrono::high_resolution_clock::now();
-	std::cout << "Sort 5 persent unsorted vec, gap = " << g << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
+	std::cout << "Sort 5 element unsorted vec, gap = " << g << ", time:" << std::chrono::duration_cast<std::chrono::milliseconds>
 		(end - start).count() << " ms;" << std::endl;
 }
 
@@ -105,7 +106,7 @@ int main() {
 	//		d(gap) =      2	           3           4
 	// unsorted_vec   	=  34264ms 	30380ms	    33521ms
 	// unsort_10_persent	=  22380ms 	21594ms	    19301ms	
-	// unsort_5_persent	=  18862ms	19713ms     18686ms
+	// unsort_5_element	=  18862ms	19713ms     18686ms
 
 	return 0;
 }
